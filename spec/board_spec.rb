@@ -1,5 +1,6 @@
 require './lib/board'
 require './lib/ship'
+require './lib/cell'
 
 RSpec.describe Board do
   it 'exists' do
@@ -63,7 +64,6 @@ RSpec.describe Board do
     end
 
     it "places a ship" do
-      # require "pry"; binding.pry
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       board.add_cell("A1")

@@ -51,10 +51,10 @@ class Board
     end
   end
 
-  def place(ship, coordinate)
-    if valid_placement(ship, coordinates)
+  def place(ship_to_place, coordinates)
+    if valid_placement?(ship_to_place, coordinates)
       coordinates.each do |coordinate|
-        cells[coordinate].ship = ship
+        @cells[coordinate].place_ship(ship_to_place)
       end
     else
       "Can not place ship here."
