@@ -55,15 +55,9 @@ class Board
 
   def cells_open?(coordinates)
     coordinates.all? do |coordinate|
-      require 'pry'
-      if @cells[coordinate] == 0
-        binding.pry
-      end
-      @cells[coordinate].empty?
+        @cells[coordinate].empty?
     end
   end
-
-  #how do I work cells_open method into valid placement
 
   def valid_placement?(ship, desired_coordinates)
     return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
