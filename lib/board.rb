@@ -52,6 +52,12 @@ class Board
   end
 
   def place(ship, coordinate)
-    # require "pry"; binding.pry
+    if valid_placement(ship, coordinates)
+      coordinates.each do |coordinate|
+        cells[coordinate].ship = ship
+      end
+    else
+      "Can not place ship here."
+    end
   end
 end
