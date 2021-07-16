@@ -26,5 +26,39 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A23")).to eq(false)
   end
 
+  it 'splits coordinates' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
 
+      expect(board.split_coordinates(["A2", "A3", "A4"])).to eq([["A", "2"], ["A", "3"], ["A", "4"]])
+    end
+
+    it 'organizes by index into seperate arrays' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+      array_of_coordinates = board.split_coordinates(["A2", "A3", "A4"])
+
+      expect(board.organize_letters_by_index(array_of_coordinates, 0)).to eq([65, 65, 65])
+    end
+
+
+    it 'validates placement' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+
+      expect(board.valid_placement?(cruiser, ["A1", "A2"])).to be false
+      expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to be false
+      expect(board.valid_placement?(submarine, ["A2", "A3"])).to be true
+      expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to be false
+      expect(board.valid_placement?(submarine, ["A1", "C1"])).to be false
+      expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to be false
+      expect(board.valid_placement?(submarine, ["C1", "B1"])).to be false
+      expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to be false
+      expect(board.valid_placement?(submarine, ["A1", "A2"])).to be true
+      expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"]))
+    end
 end
