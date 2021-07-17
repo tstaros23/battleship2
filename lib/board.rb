@@ -80,23 +80,23 @@ class Board
   end
 
   def render(value = false)
-    "  1 2 3 4\n" +
-    "A " + @cells["A1"].render(value) +
+    "  1 2 3 4 \n" +
+    "A " + @cells["A1"].render(value) + " " +
     @cells["A2"].render(value) + " " +
     @cells["A3"].render(value) + " " +
-    @cells["A4"].render(value) + "\nB " + " "
+    @cells["A4"].render(value) + " \nB " +
     @cells["B1"].render(value) + " " +
     @cells["B2"].render(value) + " " +
     @cells["B3"].render(value) + " " +
-    @cells["B4"].render(value) + "\nC " +
+    @cells["B4"].render(value) + " \nC " +
     @cells["C1"].render(value) + " " +
     @cells["C2"].render(value) + " " +
     @cells["C3"].render(value) + " " +
-    @cells["C4"].render(value) + "\nD " +
+    @cells["C4"].render(value) + " \nD " +
     @cells["D1"].render(value) + " " +
     @cells["D2"].render(value) + " " +
     @cells["D3"].render(value) + " " +
-    @cells["D4"].render(value)
+    @cells["D4"].render(value) + " \n"
   end
 end
 # print "  1 2 3 4\n"
