@@ -87,4 +87,13 @@ RSpec.describe Board do
     expect(cell_3.ship).to eq(cruiser)
     expect(cell_3.ship == cell_2.ship).to eq(true)
   end
+
+  it "can render on the board" do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+    expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+  end
+
 end

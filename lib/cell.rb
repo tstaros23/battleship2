@@ -25,14 +25,14 @@ class Cell
     end
   end
 
-  def render(show_ship=false)
-    if @been_fired_upon == false && show_ship == true && @ship != nil
+  def render(show_ship = false)
+    if @been_fired_upon == false && show_ship == true && !@ship.nil?
       "S"
-    elsif @been_fired_upon && @ship != nil && @ship.sunk?
+    elsif @been_fired_upon && !@ship.nil? && @ship.sunk?
       "X"
-    elsif @ship == nil && @been_fired_upon == true
+    elsif @ship.nil? && @been_fired_upon == true
       "M"
-    elsif @been_fired_upon && @ship != nil
+    elsif @been_fired_upon && !@ship.nil?
       "H"
     else
       "."

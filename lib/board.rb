@@ -84,4 +84,9 @@ class Board
       "Can not place ship here."
     end
   end
+
+  def render(value = false)
+    " 1 2 3 4 \n" +
+    "A " + @cells["A1"].render(value) 
+  end
 end
