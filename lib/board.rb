@@ -60,19 +60,13 @@ class Board
   end
 
   def valid_placement?(ship, desired_coordinates)
-    return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
-    split_coordinates =  split_coordinates(desired_coordinates)
-    coordinate_numbers = organize_numbers_by_index(split_coordinates, 1)
-    coordinate_letters = organize_letters_by_index(split_coordinates, 0)
-    consecutive_numbers = consecutive_items(coordinate_numbers)
-    consecutive_letters = consecutive_items(coordinate_letters)
-    if consecutive_letters && coordinate_numbers.uniq.length == 1
-      true
-    elsif coordinate_letters.uniq.length == 1 && consecutive_numbers
-      true
-    else
-      false
-    end
+    return false unless ship.length == desired_coordinates.length
+    split = split_coordinates(desired_coordinates)
+    coordinate_numbers = organize_numbers_by_index(split, 1)
+    coordinate_letters = organize_letters_by_index(split, 0)
+    vertical_check = consecutive_items(coordinate_letters) && coordinate_numbers.uniq.length == 1
+    horizontal_check = coordinate_letters.uniq.length == 1 && consecutive_items(coordinate_numbers)
+    vertical_check || horizontal_check
   end
 
   def place(ship_to_place, coordinates)
