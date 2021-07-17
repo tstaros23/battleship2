@@ -1,7 +1,7 @@
-require '/lib/board'
-require '/lib/cell'
-require '/lib/ship'
-require '/lib/game'
+require './lib/board'
+require './lib/cell'
+require './lib/ship'
+require './lib/game'
 
 RSpec.describe Game do
   it "exists" do
@@ -16,7 +16,12 @@ RSpec.describe Game do
   #   expect(game.welcome).to eq("Welcome to BATTLESHIP \n" +
   #   "Enter p to play. Enter q to quit.")
 
-  it "text" do
+  it "has computer select random valid coordinates" do
+    game = Game.new
+    board= Board.new
+
+
+  expect(game.computer_place_ships).to eq()
 
   end
 end
