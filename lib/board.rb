@@ -1,4 +1,4 @@
-require './cell'
+require './lib/cell'
 class Board
   attr_reader :cells
   def initialize
@@ -99,6 +99,7 @@ class Board
     @cells["D4"].render(value) + " \n"
   end
 end
+
 # print "  1 2 3 4\n"
 # @cells.values.each_with_index do |cell, index|
 #   if index % 4 != 3
