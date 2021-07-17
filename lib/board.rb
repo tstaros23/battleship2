@@ -60,19 +60,13 @@ class Board
   end
 
   def valid_placement?(ship, desired_coordinates)
-    return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
-    split_coordinates =  split_coordinates(desired_coordinates)
-    coordinate_numbers = organize_numbers_by_index(split_coordinates, 1)
-    coordinate_letters = organize_letters_by_index(split_coordinates, 0)
-    consecutive_numbers = consecutive_items(coordinate_numbers)
-    consecutive_letters = consecutive_items(coordinate_letters)
-    if consecutive_letters && coordinate_numbers.uniq.length == 1
-      true
-    elsif coordinate_letters.uniq.length == 1 && consecutive_numbers
-      true
-    else
-      false
-    end
+    return false unless ship.length == desired_coordinates.length
+    split = split_coordinates(desired_coordinates)
+    coordinate_numbers = organize_numbers_by_index(split, 1)
+    coordinate_letters = organize_letters_by_index(split, 0)
+    vertical_check = consecutive_items(coordinate_letters) && coordinate_numbers.uniq.length == 1
+    horizontal_check = coordinate_letters.uniq.length == 1 && consecutive_items(coordinate_numbers)
+    vertical_check || horizontal_check
   end
 
   def place(ship_to_place, coordinates)
@@ -86,7 +80,31 @@ class Board
   end
 
   def render(value = false)
-    " 1 2 3 4 \n" +
-    "A " + @cells["A1"].render(value) 
+    "  1 2 3 4 \n" +
+    "A " + @cells["A1"].render(value) + " " +
+    @cells["A2"].render(value) + " " +
+    @cells["A3"].render(value) + " " +
+    @cells["A4"].render(value) + " \nB " +
+    @cells["B1"].render(value) + " " +
+    @cells["B2"].render(value) + " " +
+    @cells["B3"].render(value) + " " +
+    @cells["B4"].render(value) + " \nC " +
+    @cells["C1"].render(value) + " " +
+    @cells["C2"].render(value) + " " +
+    @cells["C3"].render(value) + " " +
+    @cells["C4"].render(value) + " \nD " +
+    @cells["D1"].render(value) + " " +
+    @cells["D2"].render(value) + " " +
+    @cells["D3"].render(value) + " " +
+    @cells["D4"].render(value) + " \n"
   end
 end
+# print "  1 2 3 4\n"
+# @cells.values.each_with_index do |cell, index|
+#   if index % 4 != 3
+#     print cell.render(value) + " "
+#   else
+#     print cell.render(value) + "\n"
+#   end
+# end
+# @cells["A1"].render(value)
