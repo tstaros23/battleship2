@@ -80,24 +80,44 @@ class Board
   end
 
   def render(value = false)
-    "  1 2 3 4 \n" +
-    "A " + @cells["A1"].render(value) + " " +
-    @cells["A2"].render(value) + " " +
-    @cells["A3"].render(value) + " " +
-    @cells["A4"].render(value) + " \nB " +
-    @cells["B1"].render(value) + " " +
-    @cells["B2"].render(value) + " " +
-    @cells["B3"].render(value) + " " +
-    @cells["B4"].render(value) + " \nC " +
-    @cells["C1"].render(value) + " " +
-    @cells["C2"].render(value) + " " +
-    @cells["C3"].render(value) + " " +
-    @cells["C4"].render(value) + " \nD " +
-    @cells["D1"].render(value) + " " +
-    @cells["D2"].render(value) + " " +
-    @cells["D3"].render(value) + " " +
-    @cells["D4"].render(value) + " \n"
+    row = "  1 2 3 4 \n"
+    @cells.values.each_with_index do |cell, index|
+      column = ""
+      column = "A " if index == 0
+      column = " \nB " if index == 4
+      column = " \nC " if index == 8
+      column = " \nD " if index == 12
+      rendering = cell.render(value)
+
+      row + column + rendering + " "
+    end
   end
+
+  def loop
+    numbers = " 1 2 3 4 \n"
+    letters = ["A", "B", "C", "D"]
+    letters.each do |letter|
+
+
+  end
+  #   "  1 2 3 4 \n" +
+  #   "A " + @cells["A1"].render(value) + " " +
+  #   @cells["A2"].render(value) + " " +
+  #   @cells["A3"].render(value) + " " +
+  #   @cells["A4"].render(value) + " \nB " +
+  #   @cells["B1"].render(value) + " " +
+  #   @cells["B2"].render(value) + " " +
+  #   @cells["B3"].render(value) + " " +
+  #   @cells["B4"].render(value) + " \nC " +
+  #   @cells["C1"].render(value) + " " +
+  #   @cells["C2"].render(value) + " " +
+  #   @cells["C3"].render(value) + " " +
+  #   @cells["C4"].render(value) + " \nD " +
+  #   @cells["D1"].render(value) + " " +
+  #   @cells["D2"].render(value) + " " +
+  #   @cells["D3"].render(value) + " " +
+  #   @cells["D4"].render(value) + " \n"
+  # end
 end
 # print "  1 2 3 4\n"
 # @cells.values.each_with_index do |cell, index|
