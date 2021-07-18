@@ -43,6 +43,7 @@ class Game
 
   def start
     computer_place_ships
+    user_place_ships
   end
 
   def randomize_coordinates(ship_length)
@@ -63,6 +64,18 @@ class Game
       @computer_board.place(ship, coords)
     end
     "I have laid out my ships on the grid."
-    print @computer_board.render(true)
   end
+
+  def user_place_ships
+    puts "You now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long."
+    @user_board.render
+    puts "Enter the squares for the Cruiser (3 spaces):"
+    user_coordinates = gets.chomp.upcase.to_s.split(" ")
+  end
+  #
+  # def check_user_coordinates(coordinates_array)
+  #   @user_board.valid_placement?(ship, user )
+
+
+
 end
