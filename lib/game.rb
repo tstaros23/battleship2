@@ -60,9 +60,9 @@ class Game
         result = @computer_board.valid_placement?(ship, coords)
           placed = result
       end
-      require 'pry'; binding.pry
-      puts "Success" if placed
+      @computer_board.place(ship, coords)
     end
     "I have laid out my ships on the grid."
+    print @computer_board.render(true)
   end
 end

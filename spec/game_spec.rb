@@ -63,6 +63,6 @@ RSpec.describe Game do
     game = Game.new
     board= Board.new
 
-    expect(game.computer_place_ships).to eq()
+    expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
   end
 end
