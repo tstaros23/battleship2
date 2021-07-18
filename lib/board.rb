@@ -80,32 +80,40 @@ class Board
   end
 
   def render(value = false)
-    "  1 2 3 4 \n" +
-    "A " + @cells["A1"].render(value) + " " +
-    @cells["A2"].render(value) + " " +
-    @cells["A3"].render(value) + " " +
-    @cells["A4"].render(value) + " \nB " +
-    @cells["B1"].render(value) + " " +
-    @cells["B2"].render(value) + " " +
-    @cells["B3"].render(value) + " " +
-    @cells["B4"].render(value) + " \nC " +
-    @cells["C1"].render(value) + " " +
-    @cells["C2"].render(value) + " " +
-    @cells["C3"].render(value) + " " +
-    @cells["C4"].render(value) + " \nD " +
-    @cells["D1"].render(value) + " " +
-    @cells["D2"].render(value) + " " +
-    @cells["D3"].render(value) + " " +
-    @cells["D4"].render(value) + " \n"
+    row = "  1 2 3 4 \n"
+    @cells.values.each_with_index do |cell, index|
+      column = ""
+      column = "A " if index == 0
+      column = " \nB " if index == 4
+      column = " \nC " if index == 8
+      column = " \nD " if index == 12
+      rendering = cell.render(value)
+
+      row + column + rendering + " "
+    end
   end
 end
 
-# print "  1 2 3 4\n"
-# @cells.values.each_with_index do |cell, index|
+
+  #   "  1 2 3 4 \n" +
+  #   "A " + @cells["A1"].render(value) + " " +
+  #   @cells["A2"].render(value) + " " +
+  #   @cells["A3"].render(value) + " " +
+  #   @cells["A4"].render(value) + " \nB " +
+  #   @cells["B1"].render(value) + " " +
+  #   @cells["B2"].render(value) + " " +
+  #   @cells["B3"].render(value) + " " +
+  #   @cells["B4"].render(value) + " \nC " +
+  #   @cells["C1"].render(value) + " " +
+  #   @cells["C2"].render(value) + " " +
+  #   @cells["C3"].render(value) + " " +
+  #   @cells["C4"].render(value) + " \nD " +
+  #   @cells["D1"].render(value) + " " +
+  #   @cells["D2"].render(value) + " " +
+  #   @cells["D3"].render(value) + " " +
+  #   @cells["D4"].render(value) + " \n"
+  # end
+
+
+
 #   if index % 4 != 3
-#     print cell.render(value) + " "
-#   else
-#     print cell.render(value) + "\n"
-#   end
-# end
-# @cells["A1"].render(value)
