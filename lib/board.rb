@@ -92,14 +92,9 @@ class Board
       row + column + rendering + " "
     end
   end
-
-  def loop
-    numbers = " 1 2 3 4 \n"
-    letters = ["A", "B", "C", "D"]
-    letters.each do |letter|
+end
 
 
-  end
   #   "  1 2 3 4 \n" +
   #   "A " + @cells["A1"].render(value) + " " +
   #   @cells["A2"].render(value) + " " +
@@ -118,14 +113,7 @@ class Board
   #   @cells["D3"].render(value) + " " +
   #   @cells["D4"].render(value) + " \n"
   # end
-end
 
-# print "  1 2 3 4\n"
-# @cells.values.each_with_index do |cell, index|
+
+
 #   if index % 4 != 3
-#     print cell.render(value) + " "
-#   else
-#     print cell.render(value) + "\n"
-#   end
-# end
-# @cells["A1"].render(value)

@@ -7,7 +7,9 @@ class Game
   attr_reader :board
 
   def initialize
-    @board = Board.new
+    @user_board = Board.new
+    @computer_board = Board.new
+    @ships = the_ships
   end
 
   def welcome
@@ -15,46 +17,52 @@ class Game
     "Enter p to play. Enter q to quit."
   end
 
+  def the_ships
+    ships = []
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    ships << cruiser
+    ships << submarine
+  end
+
   def start
-    "HI"
+    computer_place_ships
   end
 
   def computer_place_ships
-    require 'pry'; binding.pry
-    # ships array as argument- cruiser, sub
-    # iterate over somehow |ship|
-    # randoize coordinates use valid_placement?
-    #  computer_board.place(ship, coordinates)
+    @ships.each do |ship|
+      require 'pry'; binding.pry
+      placed = false
+      until placed do
+        coords = randomize_coordinates(ship.length)
+        result = @computer_board.valid_placement?(ship, coords)
+          placed = result
+      end
+    end
+    print "I have laid out my ships on the grid."
   end
 
   def randomize_coordinates(ship_length)
-    coordinate_array = board.cells.keys
-    shuffled_array = coordinate_array.shuffle!()
-    coordinates_to_check << shuffled_array.pop(ship_length)
-
-
-
-
+    coordinate_array = @computer_board.cells.keys
+    shuffled_array = coordinate_array.shuffle!
+    shuffled_array.pop(ship_length)
   end
 
-  def user_place_ships
-
-  end
 
   def welcome_screen_input
     input = gets.chomp
     if input == "p"
-      computer_place_ships
-      user_place_ships
+      start
     elsif input == "q"
-      system "clear"
+      exit
     else
-      puts "Not a valid input. \n" + welcome
+      print "Not a valid input. "
+      run_game
     end
   end
 
   def run_game
     puts welcome
-    print welcome_screen_input
+    puts welcome_screen_input
   end
 end
