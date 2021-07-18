@@ -1,4 +1,4 @@
-require './cell'
+require './lib/cell'
 class Board
   attr_reader :cells
   def initialize
@@ -60,7 +60,7 @@ class Board
   end
 
   def valid_placement?(ship, desired_coordinates)
-    return false unless ship.length == desired_coordinates.length
+    return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
     split = split_coordinates(desired_coordinates)
     coordinate_numbers = organize_numbers_by_index(split, 1)
     coordinate_letters = organize_letters_by_index(split, 0)
@@ -119,6 +119,7 @@ class Board
   #   @cells["D4"].render(value) + " \n"
   # end
 end
+
 # print "  1 2 3 4\n"
 # @cells.values.each_with_index do |cell, index|
 #   if index % 4 != 3
