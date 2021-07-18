@@ -60,7 +60,7 @@ class Board
   end
 
   def valid_placement?(ship, desired_coordinates)
-    return false unless ship.length == desired_coordinates.length
+    return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
     split = split_coordinates(desired_coordinates)
     coordinate_numbers = organize_numbers_by_index(split, 1)
     coordinate_letters = organize_letters_by_index(split, 0)
