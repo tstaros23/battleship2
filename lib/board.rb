@@ -80,21 +80,27 @@ class Board
   end
 
   def render(value = false)
-    row = "  1 2 3 4 \n"
+    string = "  1 2 3 4 \n"
     @cells.values.each_with_index do |cell, index|
-      column = ""
-      column = "A " if index == 0
-      column = " \nB " if index == 4
-      column = " \nC " if index == 8
-      column = " \nD " if index == 12
-      rendering = cell.render(value)
-
-      row + column + rendering + " "
+      row = ""
+      row = "A " if index == 0
+      row = "\nB " if index == 4
+      row = "\nC " if index == 8
+      row = "\nD " if index == 12
+      string += row + cell.render(value) + " "
     end
+      string + "\n"
   end
+
 end
 
 
+  # def render(value = false)
+  #   string = " 1 2 3 4 \n"
+  #   numbers = ["1", "2", "3", "4"]
+  #   letters = ["A", "B", "C", "D"]
+  #   letters.each do |letter|
+  # end
   #   "  1 2 3 4 \n" +
   #   "A " + @cells["A1"].render(value) + " " +
   #   @cells["A2"].render(value) + " " +
@@ -113,7 +119,3 @@ end
   #   @cells["D3"].render(value) + " " +
   #   @cells["D4"].render(value) + " \n"
   # end
-
-
-
-#   if index % 4 != 3
