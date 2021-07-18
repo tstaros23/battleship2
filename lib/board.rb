@@ -88,6 +88,7 @@ class Board
       row = "\nC " if index == 8
       row = "\nD " if index == 12
       string += row + cell.render(value) + " "
+      require 'pry'; binding.pry
     end
       string + "\n"
   end
