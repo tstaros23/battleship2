@@ -74,6 +74,25 @@ class Game
     input.upcase.to_s.split(" ")
   end
 
+  def player_shot
+    puts "Enter the coordinate for your shot:"
+
+    valid = false
+      until valid do
+
+        user_input = gets.chomp.upcase.to_s
+        keys = @user_board.cells.keys
+        match = keys.any? do |key|
+          key == user_input
+        end
+
+        valid = match
+        valid
+        puts "Try again"
+      end
+    puts "yes"
+  end
+  
   def user_place_ships
     @user_ships.each do |ship|
       placed = false
