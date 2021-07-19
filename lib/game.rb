@@ -85,5 +85,6 @@ class Game
       end
       @user_board.place(ship, coordinates)
     end
+    puts "Your ships have been placed."
   end
 end
