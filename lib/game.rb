@@ -50,7 +50,7 @@ class Game
     coordinate_array = @computer_board.cells.keys
     shuffled_array = coordinate_array.shuffle!
     shuffled_array.pop(ship_length)
-
+    # require "pry"; binding.pry
   end
 
   def computer_place_ships
@@ -71,10 +71,25 @@ class Game
     @user_board.render
     puts "Enter the squares for the Cruiser (3 spaces):"
     user_coordinates = gets.chomp.upcase.to_s.split(" ")
+
   end
-  #
-  # def check_user_coordinates(coordinates_array)
-  #   @user_board.valid_placement?(ship, user )
+
+  def check_user_coordinates(coordinates_array)
+    @user_board.valid_placement?(ship, user )
+    require "pry"; binding.pry
+  end
+
+  def player_shot
+    shot = nil
+    @user
+    puts "Enter the coordinate for your shot:"
+    user_input = "A1"
+    if user_input.valid_placement? == true
+      return
+    else
+      puts "Please enter a valid coordinate"
+
+  end
 
 
 
