@@ -44,6 +44,7 @@ class Game
   def start
     computer_place_ships
     user_place_ships
+    player_shot
   end
 
   def randomize_coordinates(ship_length)
@@ -74,47 +75,23 @@ class Game
 
   end
 
-  # def check_user_coordinates(coordinates_array)
-  #   @user_board.valid_placement?(ship, user )
-  #   require "pry"; binding.pry
-  # end
 
   def player_shot
-    require "pry"; binding.pry
     puts "Enter the coordinate for your shot:"
-    user_input = gets.chomp.upcase.to_s.split(" ")
-    keys = @user_board.cells.keys
-    match = keys.find.any? do |key|
-      key == user_input
-    end
 
-    valid = true
-
+    valid = false
       until valid do
 
+        user_input = gets.chomp.upcase.to_s
+        keys = @user_board.cells.keys
+        match = keys.any? do |key|
+          key == user_input
+        end
+
         valid = match
-        puts "try again"
+        valid
+        puts "Try again"
       end
-
     puts "yes"
-
-    require "pry"; binding.pry
-
   end
-
-
-
-
 end
-# user_input = false
-# until user_input do
-#
-#   # user_input = gets.chomp.upcase.to_s.split(" ")
-#   user_input = "A1"
-#   valid_input = @user_board.valid_coordinate?(cells)
-#   require "pry"; binding.pry
-#   user_input == valid_input
-#   puts "Please enter a valid coordinate"
-#   require "pry"; binding.pry
-# end
-# "Nice job"
