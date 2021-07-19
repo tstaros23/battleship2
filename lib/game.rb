@@ -41,6 +41,7 @@ class Game
   def start
     computer_place_ships
     player_start
+    player_shot
   end
 
   def randomize_coordinates(ship_length)
@@ -86,5 +87,22 @@ class Game
       @user_board.place(ship, coordinates)
     end
     puts "Your ships have been placed."
+  end
+
+  def player_shot
+    puts "Enter the coordinate for your shot:"
+
+    valid = false
+      until valid do
+
+        user_input = gets.chomp.upcase.to_s
+        keys = @user_board.cells.keys
+        match = keys.any? do |key|
+          key == user_input
+        end
+
+        valid = match
+        puts "Please enter a valid coordinate:"
+      end
   end
 end
