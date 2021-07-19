@@ -40,7 +40,7 @@ RSpec.describe Game do
   # end
 
   it 'creates random coordinates' do
-  
+
     # expect(game.randomize_coordinates(2).length).to eq(2)
     # expect(game.randomize_coordinates(2)[0].class).to eq(String)
   end
@@ -62,9 +62,11 @@ RSpec.describe Game do
     expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
   end
 
+
+
   it "can ask a player to take a shot" do
     game = Game.new
 
-    expect(game.player_shot(["A1"])).to eq("My shot on A1 was a miss")
+    expect(game.player_shot).to eq("My shot on A1 was a miss")
   end
 end

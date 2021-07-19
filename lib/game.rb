@@ -74,23 +74,47 @@ class Game
 
   end
 
-  def check_user_coordinates(coordinates_array)
-    @user_board.valid_placement?(ship, user )
-    require "pry"; binding.pry
-  end
+  # def check_user_coordinates(coordinates_array)
+  #   @user_board.valid_placement?(ship, user )
+  #   require "pry"; binding.pry
+  # end
 
   def player_shot
-    shot = nil
-    @user
+    require "pry"; binding.pry
     puts "Enter the coordinate for your shot:"
-    user_input = "A1"
-    if user_input.valid_placement? == true
-      return
-    else
-      puts "Please enter a valid coordinate"
+    user_input = gets.chomp.upcase.to_s.split(" ")
+    keys = @user_board.cells.keys
+    match = keys.find.any? do |key|
+      key == user_input
+    end
+
+    valid = true
+
+      until valid do
+
+        valid = match
+        puts "try again"
+      end
+
+    puts "yes"
+
+    require "pry"; binding.pry
 
   end
+
 
 
 
 end
+# user_input = false
+# until user_input do
+#
+#   # user_input = gets.chomp.upcase.to_s.split(" ")
+#   user_input = "A1"
+#   valid_input = @user_board.valid_coordinate?(cells)
+#   require "pry"; binding.pry
+#   user_input == valid_input
+#   puts "Please enter a valid coordinate"
+#   require "pry"; binding.pry
+# end
+# "Nice job"

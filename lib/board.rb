@@ -60,13 +60,20 @@ class Board
   end
 
   def valid_placement?(ship, desired_coordinates)
+    # require "pry"; binding.pry
     return false unless ship.length == desired_coordinates.length && cells_open?(desired_coordinates)
+    # require "pry"; binding.pry
     split = split_coordinates(desired_coordinates)
+    # require "pry"; binding.pry
     coordinate_numbers = organize_numbers_by_index(split, 1)
+    # require "pry"; binding.pry
     coordinate_letters = organize_letters_by_index(split, 0)
+    # require "pry"; binding.pry
     vertical_check = consecutive_items(coordinate_letters) && coordinate_numbers.uniq.length == 1
+    # require "pry"; binding.pry
     horizontal_check = coordinate_letters.uniq.length == 1 && consecutive_items(coordinate_numbers)
     vertical_check || horizontal_check
+    # require "pry"; binding.pry
   end
 
   def place(ship_to_place, coordinates)
