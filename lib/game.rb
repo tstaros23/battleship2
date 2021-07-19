@@ -3,20 +3,17 @@ require './lib/cell'
 require './lib/ship'
 
 class Game
-  attr_reader :board, :user_board, :computer_board, :ships
+  attr_reader :user_board, :computer_board, :user_ships, :computer_ships
 
   def initialize
     @user_board = Board.new
     @computer_board = Board.new
-    @ships = the_ships
+    @user_ships = the_ships
+    @computer_ships = the_ships
   end
 
   def the_ships
-    ships = []
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    ships << cruiser
-    ships << submarine
+    [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
   end
 
   def run_game
@@ -43,18 +40,17 @@ class Game
 
   def start
     computer_place_ships
-    user_place_ships
+    player_start
   end
 
   def randomize_coordinates(ship_length)
     coordinate_array = @computer_board.cells.keys
     shuffled_array = coordinate_array.shuffle!
     shuffled_array.pop(ship_length)
-
   end
 
   def computer_place_ships
-    @ships.each do |ship|
+    @computer_ships.each do |ship|
       placed = false
       until placed do
         coords = randomize_coordinates(ship.length)
@@ -66,20 +62,28 @@ class Game
     puts "I have laid out my ships on the grid."
   end
 
-  def user_place_ships
+  def player_start
     puts "You now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long."
     puts @user_board.render
-    puts "Enter the squares for the Cruiser (3 spaces):"
-    user_coordinates = gets.chomp.upcase.to_s.split(" ")
+    user_place_ships
   end
-  #
-  # # def check_user_coordinates(coordinates_array)
-  #     if @user_board.valid_placement?(ship??, coordinates_array)
-  #       @user_board.place(ship, coordinates_array)
-  #     else
-  #       puts "Those are invalid coordinates. Please try again:"
-  #       > user_coordinates = gets.chomp
-  #
 
+  def get_user_input(ship)
+    puts "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
+    input = gets.chomp
+    input.upcase.to_s.split(" ")
+  end
 
+  def user_place_ships
+    @user_ships.each do |ship|
+      placed = false
+      until placed do
+        coordinates = get_user_input(ship)
+        result = @user_board.valid_placement?(ship, coordinates)
+          placed = result
+          puts "Those are invalid coordinates. Please try again:" if placed == false
+      end
+      @user_board.place(ship, coordinates)
+    end
+  end
 end
