@@ -24,11 +24,11 @@ RSpec.describe Board do
   end
 
   it 'splits coordinates' do
-      board = Board.new
-      cruiser = Ship.new("Cruiser", 3)
-      submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
 
-      expect(board.split_coordinates(["A2", "A3", "A4"])).to eq([["A", "2"], ["A", "3"], ["A", "4"]])
+    expect(board.split_coordinates(["A2", "A3", "A4"])).to eq([["A", "2"], ["A", "3"], ["A", "4"]])
   end
 
   it 'organizes by index into seperate arrays' do
@@ -61,7 +61,6 @@ RSpec.describe Board do
     expect(board.cells_open?(["B1", "B2"])).to be true
   end
 
-
   it 'validates placement' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -84,13 +83,11 @@ RSpec.describe Board do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
-
     board.place(cruiser,["A1", "A2", "A3"])
 
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
-
 
     expect(cell_1.ship).to eq(cruiser)
     expect(cell_2.ship).to eq(cruiser)
@@ -101,8 +98,8 @@ RSpec.describe Board do
   it "can render on the board" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
+    
     board.place(cruiser,["A1", "A2", "A3"])
-
 
     expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
