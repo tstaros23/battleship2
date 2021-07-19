@@ -41,6 +41,7 @@ class Game
   def start
     computer_place_ships
     player_start
+    player_shot
   end
 
   def randomize_coordinates(ship_length)
@@ -74,6 +75,20 @@ class Game
     input.upcase.to_s.split(" ")
   end
 
+  def user_place_ships
+    @user_ships.each do |ship|
+      placed = false
+      until placed do
+        coordinates = get_user_input(ship)
+        result = @user_board.valid_placement?(ship, coordinates)
+          placed = result
+          puts "Those are invalid coordinates. Please try again:" if placed == false
+      end
+      @user_board.place(ship, coordinates)
+    end
+    puts "Your ships have been placed."
+  end
+
   def player_shot
     puts "Enter the coordinate for your shot:"
 
@@ -87,23 +102,7 @@ class Game
         end
 
         valid = match
-        valid
-        puts "Try again"
+        puts "Please enter a valid coordinate:"
       end
-    puts "yes"
-  end
-  
-  def user_place_ships
-    @user_ships.each do |ship|
-      placed = false
-      until placed do
-        coordinates = get_user_input(ship)
-        result = @user_board.valid_placement?(ship, coordinates)
-          placed = result
-          puts "Those are invalid coordinates. Please try again:" if placed == false
-      end
-      @user_board.place(ship, coordinates)
-    end
-    puts "Your ships have been placed."
   end
 end
