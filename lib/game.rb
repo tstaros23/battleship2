@@ -63,19 +63,23 @@ class Game
       end
       @computer_board.place(ship, coords)
     end
-    "I have laid out my ships on the grid."
+    puts "I have laid out my ships on the grid."
   end
 
   def user_place_ships
     puts "You now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long."
-    @user_board.render
+    puts @user_board.render
     puts "Enter the squares for the Cruiser (3 spaces):"
     user_coordinates = gets.chomp.upcase.to_s.split(" ")
   end
   #
-  # def check_user_coordinates(coordinates_array)
-  #   @user_board.valid_placement?(ship, user )
-
+  # # def check_user_coordinates(coordinates_array)
+  #     if @user_board.valid_placement?(ship??, coordinates_array)
+  #       @user_board.place(ship, coordinates_array)
+  #     else
+  #       puts "Those are invalid coordinates. Please try again:"
+  #       > user_coordinates = gets.chomp
+  #
 
 
 end
