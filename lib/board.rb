@@ -23,7 +23,7 @@ class Board
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
-            }
+    }
   end
 
   def valid_coordinate?(cell)
@@ -91,31 +91,4 @@ class Board
     end
       string + "\n"
   end
-
 end
-
-
-  # def render(value = false)
-  #   string = " 1 2 3 4 \n"
-  #   numbers = ["1", "2", "3", "4"]
-  #   letters = ["A", "B", "C", "D"]
-  #   letters.each do |letter|
-  # end
-  #   "  1 2 3 4 \n" +
-  #   "A " + @cells["A1"].render(value) + " " +
-  #   @cells["A2"].render(value) + " " +
-  #   @cells["A3"].render(value) + " " +
-  #   @cells["A4"].render(value) + " \nB " +
-  #   @cells["B1"].render(value) + " " +
-  #   @cells["B2"].render(value) + " " +
-  #   @cells["B3"].render(value) + " " +
-  #   @cells["B4"].render(value) + " \nC " +
-  #   @cells["C1"].render(value) + " " +
-  #   @cells["C2"].render(value) + " " +
-  #   @cells["C3"].render(value) + " " +
-  #   @cells["C4"].render(value) + " \nD " +
-  #   @cells["D1"].render(value) + " " +
-  #   @cells["D2"].render(value) + " " +
-  #   @cells["D3"].render(value) + " " +
-  #   @cells["D4"].render(value) + " \n"
-  # end

@@ -8,15 +8,14 @@ RSpec.describe Board do
     expect(board).to be_a(Board)
   end
 
-  # it 'has cells' do
-  #   board = Board.new
-  #   cell_1 = Cell.new("B4")
-  #   cell_2 = Cell.new("B5")
-  #   board.add_cell("B5")
-  #   board.add_cell("B4")
-  #
-  #   expect(board.cells).to eq({})
-  # end
+  it 'has cells' do
+    board = Board.new
+
+    expect(board.cells.class).to eq (Hash)
+    expect(board.cells.keys.length).to eq(16)
+    expect(board.cells["A1"]).to be_a(Cell)
+  end
+
   it 'validates coordinates' do
     board = Board.new
 
@@ -39,6 +38,17 @@ RSpec.describe Board do
     array_of_coordinates = board.split_coordinates(["A2", "A3", "A4"])
 
     expect(board.organize_letters_by_index(array_of_coordinates, 0)).to eq([65, 65, 65])
+  end
+
+  it 'can asesses if coordinates are consecutive' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    coordinate_letters = [65, 65, 65]
+    coordinate_numbers = [1, 2, 3]
+
+    expect(board.consecutive_items(coordinate_letters)).to eq(false)
+    expect(board.consecutive_items(coordinate_numbers)).to eq(true)
   end
 
   it 'can tell if a cell is open' do
@@ -97,5 +107,4 @@ RSpec.describe Board do
     expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
   end
-
 end
