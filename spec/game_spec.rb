@@ -20,9 +20,8 @@ RSpec.describe Game do
   it 'has a cruiser and a submarine' do
     game = Game.new
 
-    expect(game.ships[0].name).to eq("Cruiser")
-    expect(game.ships[1].name).to eq("Submarine")
-    expect(game.ships.length).to eq(2)
+    expect(game.user_ships.first.name).to eq("Cruiser")
+    expect(game.user_ships.length).to eq(2)
   end
 
   it 'has a welcome message' do
@@ -56,13 +55,19 @@ RSpec.describe Game do
   # end
 
 
-
-
-
-  it "has computer select random valid coordinates" do
+  it 'places players ship' do
     game = Game.new
-    board= Board.new
 
-    expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
+    game.player_start
+
+
   end
+
+
+  # it "has computer select random valid coordinates" do
+  #   game = Game.new
+  #   board= Board.new
+  #
+  #   expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
+  # end
 end

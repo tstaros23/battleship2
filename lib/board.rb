@@ -75,7 +75,7 @@ class Board
         @cells[coordinate].place_ship(ship_to_place)
       end
     else
-      "Can not place ship here."
+      puts "Can not place ship here."
     end
   end
 
