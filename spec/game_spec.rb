@@ -31,12 +31,12 @@ RSpec.describe Game do
     "Enter p to play. Enter q to quit.")
   end
 
-  # it 'takes input on welcome screen' do
-  #   game = Game.new
-  #
-  #   #HOW DO WE TEST THIS????
-  #
-  # end
+  xit 'takes input on welcome screen' do
+    game = Game.new
+
+    #HOW DO WE TEST THIS????
+
+  end
 
   it 'creates random coordinates' do
     game = Game.new
@@ -45,17 +45,14 @@ RSpec.describe Game do
     expect(game.randomize_coordinates(2)[0].class).to eq(String)
   end
 
-  # it 'places ships on computer board' do
-  #   game = Game.new
-  #
-  #   game.computer_place_ships
-  #
-  #   #how to test this when coordinates are random
-  #
-  # end
+  xit 'places ships on computer board' do
+    game = Game.new
 
+    game.computer_place_ships
 
-  it 'places players ship' do
+  end
+
+  xit 'places players ship' do
     game = Game.new
 
     game.player_start
@@ -64,10 +61,9 @@ RSpec.describe Game do
   end
 
 
-  # it "has computer select random valid coordinates" do
-  #   game = Game.new
-  #   board= Board.new
-  #
-  #   expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
-  # end
+  it "has computer select random valid coordinates" do
+    game = Game.new
+
+    expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
+  end
 end
