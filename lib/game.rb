@@ -88,22 +88,29 @@ class Game
     puts "Your ships have been placed."
   end
 
-  def player_shot
-    display_boards
-    puts "Enter the coordinate for your shot:"
-
-    valid = false
-      until valid do
-
-        user_input = gets.chomp.upcase
-        valid = !@user_board.cells[user_input].nil?
-
-        puts "Please enter a valid coordinate:"
-      end
+  def display_boards
+    puts "=============COMPUTER BOARD============="
+    puts @computer_board.render
+    puts "==============PLAYER BOARD=============="
+    puts @user_board.render(true)
   end
 
   def player_input
     gets.chomp.upcase
+  end
+
+  def player_shot
+    display_boards
+    puts "Enter the coordinate for your shot:"
+    valid = false
+      until valid do
+        user_input = player_input.to_s
+        result = !@computer_board.cells[user_input].nil?
+        valid = result
+        puts "Please enter a valid coordinate:" if valid == false
+      end
+      @computer_board.cells[user_input].fire_upon
+      computer_shot
   end
 
   def shuffled_array
@@ -111,10 +118,16 @@ class Game
     coordinate_array.shuffle!
   end
 
-  def display_boards
-    puts "=============COMPUTER BOARD============="
-    puts @computer_board.render
-    puts "==============PLAYER BOARD=============="
-    puts @user_board.render(true)
+  def computer_shot
+    puts "Now the computer will take a shot!"
+    valid = false
+      until valid do
+        coordinate = shuffled_array.pop
+        result = @computer_board.cells[coordinate].fired_upon?
+        valid = result
+      end
+    @user_board.cells[coordinate].fire_upon
+    player_shot
   end
+
 end
