@@ -6,24 +6,19 @@ class Board
   end
 
   def cells_grid
-    {
-      "A1" => Cell.new("A1"),
-      "A2" => Cell.new("A2"),
-      "A3" => Cell.new("A3"),
-      "A4" => Cell.new("A4"),
-      "B1" => Cell.new("B1"),
-      "B2" => Cell.new("B2"),
-      "B3" => Cell.new("B3"),
-      "B4" => Cell.new("B4"),
-      "C1" => Cell.new("C1"),
-      "C2" => Cell.new("C2"),
-      "C3" => Cell.new("C3"),
-      "C4" => Cell.new("C4"),
-      "D1" => Cell.new("D1"),
-      "D2" => Cell.new("D2"),
-      "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4")
-    }
+    ("A1".."D4").reduce(Hash.new) do |hash,string|
+      number = string[-1].to_i
+      if number > 0 && number < 5
+        hash[string] = Cell.new(string)
+      end
+      hash
+    end
+      #(1..4).include?(number)
+      #reduce creates a hash object in this case.
+      #assigns it to local variable "hash" in this case
+      #checks the string to see if the cell number is 1 through 4
+      #if it is, it will add the cell to the hash
+      #reduce returns the last line executed
   end
 
   def valid_coordinate?(cell)
