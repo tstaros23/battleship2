@@ -50,7 +50,9 @@ class Board
 
   def cells_open?(coordinates)
     coordinates.all? do |coordinate|
+      if valid_coordinate?(coordinate)
         @cells[coordinate].empty?
+      end
     end
   end
 
