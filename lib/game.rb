@@ -110,8 +110,16 @@ class Game
         puts "Please enter a valid coordinate:" if valid == false
       end
       @computer_board.cells[user_input].fire_upon
+      if @computer_board.cells[user_input].render == "X"
+        puts "You sunk a ship!"
+      elsif @computer_board.cells[user_input].render == "H"
+        puts "Your shot on #{user_input} was a hit."
+      elsif @computer_board.cells[user_input].render == "M"
+        puts "Your shot on #{user_input} was a miss."
+      end
       computer_shot
   end
+
 
   def shuffled_array
     coordinate_array = @computer_board.cells.keys
@@ -126,6 +134,13 @@ class Game
         valid = result
       end
     @user_board.cells[coordinate].fire_upon
+    if @user_board.cells[coordinate].render == "X"
+      puts "I sunk a ship!"
+    elsif @user_board.cells[coordinate].render == "H"
+      puts "My shot on #{coordinate} was a hit."
+    elsif @user_board.cells[coordinate].render == "M"
+      puts "My shot on #{coordinate} was a miss."
+    end
     player_shot
   end
 
