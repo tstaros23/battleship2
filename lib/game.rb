@@ -45,7 +45,6 @@ class Game
   end
 
   def randomize_coordinates(ship_length)
-
     shuffled_array
     shuffled_array.pop(ship_length)
   end
@@ -90,6 +89,7 @@ class Game
   end
 
   def player_shot
+    display_boards
     puts "Enter the coordinate for your shot:"
 
     valid = false
@@ -112,6 +112,9 @@ class Game
   end
 
   def display_boards
-    require "pry"; binding.pry
+    puts "=============COMPUTER BOARD============="
+    puts @computer_board.render
+    puts "==============PLAYER BOARD=============="
+    puts @user_board.render(true)
   end
 end
