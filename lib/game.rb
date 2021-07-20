@@ -119,11 +119,10 @@ class Game
   end
 
   def computer_shot
-    puts "Now the computer will take a shot!"
     valid = false
       until valid do
         coordinate = shuffled_array.pop
-        result = @computer_board.cells[coordinate].fired_upon?
+        result = !@user_board.cells[coordinate].fired_upon?
         valid = result
       end
     @user_board.cells[coordinate].fire_upon
