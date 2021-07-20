@@ -80,4 +80,10 @@ RSpec.describe Game do
     game = Game.new
     game.computer_shot
   end
+
+  it "can end the game" do
+
+    game = Game.new
+    game.end_game
+  end
 end

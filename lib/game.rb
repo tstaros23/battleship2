@@ -44,6 +44,17 @@ class Game
     player_shot
   end
 
+  # def end_game
+  #   stop_game = false
+  #   until stop_game do
+  #     player_shot
+  #     computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
+  #     user_sunk = @user_ships.all? {|ship| ship.sunk?}
+  #     stop_game = computer_sunk || user_sunk
+  #   end
+  #   puts "Game over"
+  # end
+
   def randomize_coordinates(ship_length)
     shuffled_array
     shuffled_array.pop(ship_length)
@@ -100,6 +111,9 @@ class Game
   end
 
   def player_shot
+    computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
+    user_sunk = @user_ships.all? {|ship| ship.sunk?}
+    return if computer_sunk || user_sunk
     display_boards
     puts "Enter the coordinate for your shot:"
     valid = false
@@ -109,6 +123,7 @@ class Game
         valid = result
         puts "Please enter a valid coordinate:" if valid == false
       end
+      puts "You already fired on #{user_input}" if @computer_board.cells[user_input].fired_upon?
       @computer_board.cells[user_input].fire_upon
       if @computer_board.cells[user_input].render == "X"
         puts "You sunk a ship!"
@@ -117,9 +132,9 @@ class Game
       elsif @computer_board.cells[user_input].render == "M"
         puts "Your shot on #{user_input} was a miss."
       end
+
       computer_shot
   end
-
 
   def shuffled_array
     coordinate_array = @computer_board.cells.keys
@@ -127,6 +142,9 @@ class Game
   end
 
   def computer_shot
+    computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
+    user_sunk = @user_ships.all? {|ship| ship.sunk?}
+    return if computer_sunk || user_sunk
     valid = false
       until valid do
         coordinate = shuffled_array.pop
@@ -143,5 +161,4 @@ class Game
     end
     player_shot
   end
-
 end
