@@ -32,5 +32,7 @@ RSpec.describe Ship do
       expect(cruiser.sunk?).to eq(false)
       cruiser.hit
       expect(cruiser.sunk?).to eq(true)
+      cruiser.hit
+      expect(cruiser.health).to eq(0)
     end
   end

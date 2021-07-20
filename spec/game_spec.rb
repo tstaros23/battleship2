@@ -75,4 +75,9 @@ RSpec.describe Game do
 
     expect(game.computer_place_ships).to eq("I have laid out my ships on the grid.")
   end
+
+  it "has the computer take a shot" do
+    game = Game.new
+    game.computer_shot
+  end
 end
