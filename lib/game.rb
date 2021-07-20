@@ -95,13 +95,9 @@ class Game
     valid = false
       until valid do
 
-        user_input = gets.chomp.upcase.to_s
-        keys = @user_board.cells.keys
-        match = keys.any? do |key|
-          key == user_input
-        end
+        user_input = gets.chomp.upcase
+        valid = !@user_board.cells[user_input].nil?
 
-        valid = match
         puts "Please enter a valid coordinate:"
       end
   end
