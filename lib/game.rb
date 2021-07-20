@@ -45,8 +45,8 @@ class Game
   end
 
   def randomize_coordinates(ship_length)
-    coordinate_array = @computer_board.cells.keys
-    shuffled_array = coordinate_array.shuffle!
+
+    shuffled_array
     shuffled_array.pop(ship_length)
   end
 
@@ -100,5 +100,18 @@ class Game
 
         puts "Please enter a valid coordinate:"
       end
+  end
+
+  def player_input
+    gets.chomp.upcase
+  end
+
+  def shuffled_array
+    coordinate_array = @computer_board.cells.keys
+    coordinate_array.shuffle!
+  end
+
+  def display_boards
+    require "pry"; binding.pry
   end
 end
