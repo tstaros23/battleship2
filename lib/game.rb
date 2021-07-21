@@ -42,18 +42,8 @@ class Game
     computer_place_ships
     player_start
     player_shot
+    run_game
   end
-
-  # def end_game
-  #   stop_game = false
-  #   until stop_game do
-  #     player_shot
-  #     computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
-  #     user_sunk = @user_ships.all? {|ship| ship.sunk?}
-  #     stop_game = computer_sunk || user_sunk
-  #   end
-  #   puts "Game over"
-  # end
 
   def randomize_coordinates(ship_length)
     shuffled_array
@@ -107,13 +97,11 @@ class Game
   end
 
   def player_input
-    gets.chomp.upcase
+    input = gets.chomp
+    input.upcase
   end
 
   def player_shot
-    computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
-    user_sunk = @user_ships.all? {|ship| ship.sunk?}
-    return if computer_sunk || user_sunk
     display_boards
     puts "Enter the coordinate for your shot:"
     valid = false
@@ -132,7 +120,7 @@ class Game
       elsif @computer_board.cells[user_input].render == "M"
         puts "Your shot on #{user_input} was a miss."
       end
-
+      winner
       computer_shot
   end
 
@@ -142,9 +130,6 @@ class Game
   end
 
   def computer_shot
-    computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
-    user_sunk = @user_ships.all? {|ship| ship.sunk?}
-    return if computer_sunk || user_sunk
     valid = false
       until valid do
         coordinate = shuffled_array.pop
@@ -159,6 +144,30 @@ class Game
     elsif @user_board.cells[coordinate].render == "M"
       puts "My shot on #{coordinate} was a miss."
     end
+    winner
     player_shot
+  end
+
+  def winner
+    if @computer_ships.all? {|ship| ship.sunk?} == true
+      puts "You won!"
+      end_game
+    elsif @user_ships.all? {|ship| ship.sunk?} == true
+      puts "I won!"
+      end_game
+    end
+  end
+
+  def end_game
+    computer_sunk = @computer_ships.all? {|ship| ship.sunk?}
+    user_sunk = @user_ships.all? {|ship| ship.sunk?}
+    restart_game if computer_sunk || user_sunk
+  end
+
+  def restart_game
+    @computer_board = Board.new
+    @user_board = Board.new
+    puts welcome
+    puts welcome_screen_input
   end
 end
