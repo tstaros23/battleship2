@@ -44,6 +44,11 @@ class Game
     player_shot
   end
 
+  def shuffled_array
+    coordinate_array = @computer_board.cells.keys
+    coordinate_array.shuffle!
+  end
+  
   def randomize_coordinates(ship_length)
     shuffled_array
     shuffled_array.pop(ship_length)
@@ -123,10 +128,7 @@ class Game
       computer_shot
   end
 
-  def shuffled_array
-    coordinate_array = @computer_board.cells.keys
-    coordinate_array.shuffle!
-  end
+
 
   def computer_shot
     valid = false
