@@ -42,7 +42,6 @@ class Game
     computer_place_ships
     player_start
     player_shot
-    run_game
   end
 
   def randomize_coordinates(ship_length)
@@ -167,6 +166,8 @@ class Game
   def restart_game
     @computer_board = Board.new
     @user_board = Board.new
+    @user_ships = the_ships
+    @computer_ships = the_ships
     puts welcome
     puts welcome_screen_input
   end
